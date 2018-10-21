@@ -1,13 +1,5 @@
-/**********************************************************************
-* Project Name	 :Lab_11											  *
-* Project Type	 :Win32 Console Application							  *
-* File Name		 :Lab_11.cpp										  *
-* Language		 :C, MAVS 2010 and above		                      *
-* Programmer(2)	 :Крещук Николай, Плотников Кирилл, 8 бригада		  *
-* Created		 :20/10/18						                      *
-* Last revision	 :20/10/18						                      *
-* Comment		 :Работа со строками		                          *
-**********************************************************************/
+		/*//kkjjj*/ 123
+
 
 #include "pch.h"
 #include "stdio.h"
