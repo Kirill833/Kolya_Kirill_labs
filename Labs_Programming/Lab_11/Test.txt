@@ -1,2 +1,28 @@
-     ///dsds
-	 //dsdsds
+Тест №1.
+// DDDD.
+
+Тест №2.
+/* DDDDD */
+
+Тест №3.
+YYYYYY /* DDDDD */ YYYY 
+
+Тест №4.
+/* DDDDD */ YYYYY
+
+Тест №5.
+
+YYYYY /* DDDDD */
+
+Тест №6.
+YYYYY
+/* DDDDD 
+DDDDD
+DDDDDD
+*/ YYYYYYYYYYY
+
+Тест №7.
+YYYY /* // DDDDD */YYYYY 
+
+Тест №8.
+YYYY ///* DDDDD */ DDDDD
