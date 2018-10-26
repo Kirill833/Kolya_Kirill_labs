@@ -1,28 +1,13 @@
-Тест №1.
-// DDDD.
+#include <stdio.h>
 
-Тест №2.
-/* DDDDD */
+main() /* Simple program */
+{
+// Number.
+int num;
 
-Тест №3.
-YYYYYY /* DDDDD */ YYYY 
+num = l;	// Assign a variable num number "1".
 
-Тест №4.
-/* DDDDD */ YYYYY
-
-Тест №5.
-
-YYYYY /* DDDDD */
-
-Тест №6.
-YYYYY
-/* DDDDD 
-DDDDD
-DDDDDD
-*/ YYYYYYYYYYY
-
-Тест №7.
-YYYY /* // DDDDD */YYYYY 
-
-Тест №8.
-YYYY ///* DDDDD */ DDDDD
+printf ("I'm simple");
+printf ("computer. ");
+printf ("My favorite number is %d, because it's the first. ", num);
+}

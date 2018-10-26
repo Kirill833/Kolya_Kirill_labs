@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+main()                     
+{
+
+int num;
+
+num = l;	
+
+printf ("I'm simple");
+printf ("computer. ");
+printf ("My favorite number is %d, because it's the first. ", num);
+}
