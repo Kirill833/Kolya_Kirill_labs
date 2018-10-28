@@ -1,13 +1,31 @@
-#include <stdio.h>
+// comment
+code // comment
 
-main() /* Simple program */
-{
+/*
+1
+2 comment
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+*/ code 
+code
+
 // Number.
-int num;
+num = l;	
 
-num = l;	// Assign a variable num number "1".
-
-printf ("I'm simple");
+//printf ("I'm simple");
 printf ("computer. ");
 printf ("My favorite number is %d, because it's the first. ", num);
 }
+// Delete it.
