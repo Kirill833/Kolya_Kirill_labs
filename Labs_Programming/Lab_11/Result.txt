@@ -1,10 +1,2 @@
-code 
-
- code 
-code
-
-num = l;	
-
-printf ("computer. ");
-printf ("My favorite number is %d, because it's the first. ", num);
-}
+Что-то там 
+вывывы  123456789
