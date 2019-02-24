@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Lab_4
 {
@@ -11,106 +11,162 @@ namespace Lab_4
 		/// <summary>
 		/// Словарь вершин графа.
 		/// </summary>
-		private Dictionary<int, Element> _elements { get; set; } = new Dictionary<int, Element>();
+		private Dictionary<int, Node> _nodes { get; set; }
+
+		/// <summary>
+		/// Стандартный конструктор класса графа.
+		/// </summary>
+		public Graph()
+		{
+			_nodes = new Dictionary<int, Node>();
+		}
 
 		/// <summary>
 		/// Добавление вершины в граф.
 		/// </summary>
-		/// <param name="numb">Номер вершины.</param>
-		public void AddElement(int numb)
+		/// <param name="number">Номер вершины.</param>
+		public void AddNode(int number)
 		{
-			if (!_elements.ContainsKey(numb))
-				_elements.Add(numb, new Element(numb));
+			if (!_nodes.ContainsKey(number))
+				_nodes.Add(number, new Node(number));
 		}
 
 		/// <summary>
 		/// Получение вершины графа.
 		/// </summary>
-		/// <param name="numb">Номер вершины.</param>
+		/// <param name="number">Номер вершины.</param>
 		/// <returns>Вершина графа.</returns>
-		public Element GetElement(int numb)
+		public Node GetNode(int number)
 		{
-			return _elements[numb];
+			return _nodes[number];
 		}
 
 		/// <summary>
-		/// Получение минимального расстояния между двумя вершинами.
+		/// Получение минимального расстояния между данной вершиной и остальными.
 		/// </summary>
-		/// <param name="start">Начальная вершина.</param>
-		/// <param name="finish">Конечная вершина.</param>
-		public void GetMinDistance(int start, int finish)
+		/// <param name="start">Номер начальной вершины.</param>
+		public int[] GetMinDistancesToOther(int start)
 		{
-			bool[] isCheck = new bool[_elements.Count];
-			int[] distances = new int[_elements.Count];
-			int neighbour = 0;
+			bool[] isCheck = new bool[_nodes.Count];
+			int[] distances = new int[_nodes.Count];
+			int iNeighbour = 0;
 			int minCurDistance = 0;
-			int minIndexElem = 0;
-			int iCur = start - 1;
+			int minIndexElem = -1;
+			int iCur = start;
 
 			distances[iCur] = 0;
-			for (int i = 0; i < _elements.Count; i++)
+			for (int i = 0; i < _nodes.Count; i++)
 			{
 				if (i == iCur)
 					continue;
 				distances[i] = -1;
 			}
 
-			for (int i = 0; i < _elements.Count; i++)
+			for (int i = 0; i < _nodes.Count; i++)
 			{
 				if (isCheck[iCur])
-					continue;
+					 break;
 
-				foreach (KeyValuePair<Element, int> neighb in _elements[iCur].Neighbourhood)
+				var reachableNeighbors = _nodes[iCur].Neighbourhood.Where((n) => n.Value != -1).Select((n) => n);
+				foreach (var neighb in reachableNeighbors)
 				{
-					neighbour = neighb.Key.Number;
-					if (distances[neighbour] > distances[iCur] + neighb.Value || distances[neighbour] == -1)
-						distances[neighbour] = distances[iCur] + neighb.Value;
+					iNeighbour = neighb.Key.Number;
+					if (distances[iNeighbour] > distances[iCur] + neighb.Value || distances[iNeighbour] == -1)
+						distances[iNeighbour] = distances[iCur] + neighb.Value;
 				}
 
 				isCheck[iCur] = true;
-				for (int j = 0; j < _elements.Count; j++)
+				for (int j = 0; j < _nodes.Count; j++)
 				{
-					if (distances[j] != -1 && (distances[j] < minCurDistance || minCurDistance == 0)
-						&& !isCheck[j])
+					if (distances[j] != -1 && (distances[j] < minCurDistance || minCurDistance == 0) && !isCheck[j])
 					{
 						minCurDistance = distances[j];
 						minIndexElem = j;
 					}
 				}
 
+				if (minIndexElem == -1)
+					break;
+
 				iCur = minIndexElem;
 				minCurDistance = 0;
 			}
 
-			Console.WriteLine($"Крайчайший путь между вершинами {start} и {finish}: {distances[finish - 1]}.");
-			PrintWay(distances, start, finish);
+			return distances;
 		}
-
-		private void PrintWay(int[] distces, int start, int finish)
+		
+		/// <summary>
+		/// Получение пути от начальной вершины до конечной.
+		/// </summary>
+		/// <param name="distances">Минимальное расстояние между начальной вершиной и остальными.</param>
+		/// <param name="start">Номер начальной вершины.</param>
+		/// <param name="finish">Номер конечной вершины.</param>
+		/// <returns>Путь в виде списка вершин.</returns>
+		public List<int> GetWay(int[] distances, int start, int finish)
 		{
 			List<int> ascendingWay = new List<int>();
-			int iCur = finish - 1;
+			int iCur = finish;
 			ascendingWay.Add(iCur);
-			while (iCur != start - 1)
+			while (iCur != start)
 			{
-				foreach (KeyValuePair<Element, int> elem in _elements[iCur].Neighbourhood)
+				foreach (KeyValuePair<Node, int> node in _nodes[iCur].Neighbourhood)
 				{
-					if (elem.Value == -1 && elem.Key.Neighbourhood.ContainsKey(GetElement(iCur))
-						&& distces[elem.Key.Number] == distces[iCur] - elem.Key.Neighbourhood[GetElement(iCur)])
+					Node neighbourNode = node.Key;
+					Node curNode = GetNode(iCur);
+					if (neighbourNode.Neighbourhood.ContainsKey(curNode) && neighbourNode.Neighbourhood[curNode] != -1 &&
+						 distances[neighbourNode.Number] == distances[iCur] - neighbourNode.Neighbourhood[curNode])
 					{
-						iCur = elem.Key.Number;
+						iCur = neighbourNode.Number;
 						ascendingWay.Add(iCur);
+						break;
 					}
 				}
 			}
-
-			Console.Write("Путь: ");
-
+			
 			ascendingWay.Reverse();
-			foreach (int point in ascendingWay)
-				Console.Write($"{point + 1} ");
+			return ascendingWay;
+		}
 
-			Console.WriteLine();
+		/// <summary>
+		/// Получение минимального остовного дерева.
+		/// </summary>
+		/// <returns>Минимального остовное дерево.</returns>
+		public Dictionary<Node, List<Node>> GetMinSpanningTree()
+		{
+
+			int minDistance;
+			int iMinNeibour = 0;
+			int iCur = 0;
+			bool[] isChecked = new bool[_nodes.Count];
+			Dictionary<Node, List<Node>> spanningTree = new Dictionary<Node, List<Node>>();
+
+			for (int i = 0; i < _nodes.Count; i++)
+				spanningTree.Add(_nodes[i], new List<Node>());
+
+			for (int i = 0; i < _nodes.Count - 1; i++)
+			{
+				minDistance = -1;
+				isChecked[iMinNeibour] = true;
+				for (int j = 0; j < _nodes.Count; j++)
+				{
+					if (isChecked[j])
+					{
+						foreach (KeyValuePair<Node, int> neighbour in _nodes[j].Neighbourhood)
+						{
+							if (!isChecked[neighbour.Key.Number] && (neighbour.Value < minDistance || minDistance == -1))
+							{
+								minDistance = neighbour.Value;
+								iMinNeibour = neighbour.Key.Number;
+								iCur = j;
+							}
+						}
+					}
+				}
+
+				spanningTree[GetNode(iCur)].Add(GetNode(iMinNeibour));
+			}
+
+			return spanningTree;
 		}
 	}
 }
