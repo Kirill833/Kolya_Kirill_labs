@@ -49,7 +49,7 @@ namespace Lab_4
 		{
 			bool[] isCheck = new bool[_nodes.Count];
 			int[] distances = new int[_nodes.Count];
-			int iNeighbour = 0;
+			int NumberNeighbour = 0;
 			int minCurDistance = 0;
 			int minIndexElem = -1;
 			int iCur = start;
@@ -59,6 +59,8 @@ namespace Lab_4
 			{
 				if (i == iCur)
 					continue;
+
+				// -1 означает, что путь из начальной вершины не найден/не существует.
 				distances[i] = -1;
 			}
 
@@ -70,9 +72,9 @@ namespace Lab_4
 				var reachableNeighbors = _nodes[iCur].Neighbourhood.Where((n) => n.Value != -1).Select((n) => n);
 				foreach (var neighb in reachableNeighbors)
 				{
-					iNeighbour = neighb.Key.Number;
-					if (distances[iNeighbour] > distances[iCur] + neighb.Value || distances[iNeighbour] == -1)
-						distances[iNeighbour] = distances[iCur] + neighb.Value;
+					NumberNeighbour = neighb.Key.Number;
+					if (distances[NumberNeighbour] > distances[iCur] + neighb.Value || distances[NumberNeighbour] == -1)
+						distances[NumberNeighbour] = distances[iCur] + neighb.Value;
 				}
 
 				isCheck[iCur] = true;
@@ -130,10 +132,9 @@ namespace Lab_4
 		/// <summary>
 		/// Получение минимального остовного дерева.
 		/// </summary>
-		/// <returns>Минимального остовное дерево.</returns>
+		/// <returns>Минимальное остовное дерево.</returns>
 		public Dictionary<Node, List<Node>> GetMinSpanningTree()
 		{
-
 			int minDistance;
 			int iMinNeibour = 0;
 			int iCur = 0;

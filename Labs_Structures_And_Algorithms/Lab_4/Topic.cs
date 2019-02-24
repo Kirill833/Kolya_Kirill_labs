@@ -134,7 +134,7 @@ namespace Lab_4
 			Dictionary<Node, List<Node>> spanningTree = g.GetMinSpanningTree();
 			StringBuilder result = new StringBuilder($"Связи между вершинами, в \"[]\" указано расстояние до соседних вершин.\n");
 			int minWeight = 0;
-			int curWeitht = 0;
+			int curWeight = 0;
 
 			foreach (KeyValuePair<Node, List<Node>> node in spanningTree)
 			{
@@ -144,9 +144,9 @@ namespace Lab_4
 				result.Append($"Вершина {node.Key.Number}: ");
 				foreach (Node neighbour in node.Value)
 				{
-					curWeitht = neighbour.Neighbourhood[node.Key];
-					result.Append($"{neighbour.Number}[{curWeitht}] ");
-					minWeight += curWeitht;
+					curWeight = neighbour.Neighbourhood[node.Key];
+					result.Append($"{neighbour.Number}[{curWeight}] ");
+					minWeight += curWeight;
 				}
 
 				result.AppendLine();
