@@ -1,0 +1,11 @@
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\bin\Debug\netcoreapp2.1\Lab_5.deps.json
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\bin\Debug\netcoreapp2.1\Lab_5.runtimeconfig.json
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\bin\Debug\netcoreapp2.1\Lab_5.runtimeconfig.dev.json
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\bin\Debug\netcoreapp2.1\Lab_5.dll
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\bin\Debug\netcoreapp2.1\Lab_5.pdb
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\obj\Debug\netcoreapp2.1\Lab_5.csprojAssemblyReference.cache
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\obj\Debug\netcoreapp2.1\Lab_5.csproj.CoreCompileInputs.cache
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\obj\Debug\netcoreapp2.1\Lab_5.AssemblyInfoInputs.cache
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\obj\Debug\netcoreapp2.1\Lab_5.AssemblyInfo.cs
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\obj\Debug\netcoreapp2.1\Lab_5.dll
+D:\GitHub\Labs_Struct_Prog\Labs_Structures_And_Algorithms\Lab_5\obj\Debug\netcoreapp2.1\Lab_5.pdb

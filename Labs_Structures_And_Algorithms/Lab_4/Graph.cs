@@ -11,7 +11,7 @@ namespace Lab_4
 		/// <summary>
 		/// Словарь вершин графа.
 		/// </summary>
-		private Dictionary<int, Node> _nodes { get; set; }
+		private Dictionary<int, Node> _nodes;
 
 		/// <summary>
 		/// Стандартный конструктор класса графа.
