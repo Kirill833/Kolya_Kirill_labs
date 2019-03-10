@@ -346,6 +346,8 @@ namespace Lab_5
 			{
 				if (subTree._key < min)
 					min = subTree._key;
+				else
+					return;
 
 				subTree.GetMinKey(ref min);
 			}
